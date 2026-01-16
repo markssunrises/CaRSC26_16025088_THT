@@ -20,4 +20,4 @@
     - contoh penggunaan : git commit -m "Pesan penjelasan perubahan di sini" : melakukan commit dan memberikan pesan
 
 ### b. menghubungkan Git dan VSCode dengan GitHub
-- ![screenshot source control](..\lampiran\a\screenshot_source_control.jpg)
+- ![Source Control](../lampiran/a/screenshot_source_control.jpg)
