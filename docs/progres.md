@@ -17,3 +17,9 @@
 - Mempelajari beberapa tools yang belum diketahui pada mission planner 
 - Membuat planning sederhana menggunakan draw polygon untuk membuat pemetaan
 - Sempat kesulitan dalam membuat 100*80 karena saya tidak menemukan cara otomatis sehingga harus manual
+
+## 17 Januari 2026 [20:49]
+- Berhasil menghubungkan VS Code ke WSL: Ubuntu 24.04.
+- Berhasil mengatasi kendala GPG Signature pada repositori ROS 2 Jazzy.
+- Dikarenakan menggunakan ubuntu 24.04, melakukan instalasi ros-jazzy-desktop
+- Berhasil melakukan demo sistem talker-listener
