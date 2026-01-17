@@ -44,3 +44,9 @@
 ### c. Misi sederhana
 - [Klik di sini untuk melihat file Waypoint Pemetaan](../lampiran/a/waypoint_pemetaan_80x100.waypoints)
 
+## 4. Development environment
+instalasi ubuntu menggunakan wsl
+
+### a. ubuntu tools
+- ![Ubuntu tools](../lampiran/a/linux_tools.jpg)
+
