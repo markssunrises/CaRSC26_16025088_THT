@@ -23,3 +23,9 @@
 - Berhasil mengatasi kendala GPG Signature pada repositori ROS 2 Jazzy.
 - Dikarenakan menggunakan ubuntu 24.04, melakukan instalasi ros-jazzy-desktop
 - Berhasil melakukan demo sistem talker-listener
+
+## 18 Januari 2026 
+- Mempelajari tentang dasar-dasar pesawat terbang
+
+## 19 Januari 2026 [08:15]
+- Menyelesaikan soal nomor 5 bagian a
