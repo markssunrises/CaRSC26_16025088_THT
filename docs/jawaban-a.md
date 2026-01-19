@@ -75,7 +75,6 @@ instalasi ubuntu menggunakan wsl
     - Kekurangan
         - Boros baterai
         - Tidak efisien untuk perjalanan jauh (gaya angkat bergantung sepenuhnya pada rotor, tidak bisa memanfaatkan udara seperti menggunakan wing)
-
 - HTOL 
     - Mekanisme terbang
         - Lift dihasilkan oleh sayap tetap (airfoil) akibat aliran udara saat UAV bergerak maju
@@ -113,3 +112,69 @@ instalasi ubuntu menggunakan wsl
         - Biaya lebih mahal
         - Sistem lebih kompleks
         - Lebih berat karena memiliki dual system
+
+### b. Komponen-komponen dalam UAV
+1. Airframe (Struktur UAV)
+    - Berfungsi seperti sekeleton yang menjadi kerangka fisik UAV. Airframe berfungsi sebagai tempat menopang semua komponen (motor, sensor, payload, dll). Selain itu, airframe juga menentukan karakteristik aerodinamika
+    - Relevansi mapping :
+        - Airframe harus stabil dan minim vibrasi agar hasil citra tidak blur.
+2. Propulsion System
+    - Berfungsi sebagai alat penghasil thrust dan lift, juga sebagai alat yang mengontrol kecepatan dan manuver UAV
+    - Komponen :
+        - Motor
+        - Propeler
+        - ESC (Electronic Speed Controller)
+    - Relevansi mapping :
+        - Jika kecepatan konstan dan halus, pengambilan foto akan konsisten
+3. Flight controller
+    - Berfungsi sebagai otak dari UAV yang bisa membaca sensor, menghitung kontrol (stabilitas & navigasi), serta mengirim perintah ke motor
+    - Komponen :
+        - Microcontroller
+        - Firmware (PX4 / ArduPilot)
+    - Relevansi mapping :
+        - Menjalankan waypoint
+        - Menjaga ketinggian dan heading
+        - Sinkronisasi kamera
+4. Sensor System
+    - Berfungsi seperti indranya UAV sehingga state dari UAV (posisi, kecepatan, orientasi) bisa ditentukan
+    - Komponen : 
+        - IMU (accelerometer + gyroscope) → orientasi
+        - GPS → posisi
+        - Barometer → ketinggian
+        - Magnetometer → arah (heading)
+    - Relevansi mapping :
+        - Geotagging foto
+        - Jalur terbang presisi
+5. Payload
+    - Berfungsi untuk mengumpulkan data (terutama pada pemetaan)
+    - Contoh payload :
+        - Kamera RGB
+        - Multispectral camera
+        - LIDAR (advanced)
+    - Relevansi mapping :
+        - Sebagai tujuan utama mapping, yakni mengumpulkan data
+6. Communication system 
+    - Berfungsi sebagai komunikasi antara wahana dengan manusia seperti mengirim data status UAV, mengirim perintah & misi, dan monitoring real-time
+    - Komponen :
+        - Telemetry radio
+        - Ground Control Station (GCS)
+7. Power System 
+    - Berfungsi sebagai sumber energi utama dari UAV
+    - Komponen : 
+        - Battery
+        - Power Distribution Board (PDB)
+        - Voltage regulator
+**Hubungan antar komponen**
+- Sensor -> flight controller -> motor
+- Payload bekerja sama dengan sistem kontrol
+- Ground station berkomunikasi dengan flight controller
+
+graph TD
+    GCS -->|Telemetry| FC
+    Sensor --> FC
+    FC --> Motor
+    FC --> Payload
+    Power --> FC
+    Power --> Sensor
+    Power --> Motor
+    Power --> Payload

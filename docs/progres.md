@@ -29,3 +29,6 @@
 
 ## 19 Januari 2026 [08:15]
 - Menyelesaikan soal nomor 5 bagian a
+
+## 19 Januari 2026 [23:00]
+- Menyelesaikan soal no 5 bagian b
