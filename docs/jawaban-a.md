@@ -11,10 +11,10 @@
     - contoh penggunaan : D:\projects\drone\CaRSC26_16025088_THT> git init : Artinya menginisiasi folder CaRSC26_16025088_THT ke git
 2. git branch
     - kegunaan : mengelola cabang dari pengerjaan kode
-    - contoh penggunaan : git branch [nama-branch]: Membuat cabang baru.
+    - contoh penggunaan : git branch [nama-branch]: Membuat cabang baru
 3. git add
     - kegunaan : memindahkan perubahan file ke area persiapan (belum disimpan secara permanen)
-    - contoh penggunaan : git add . : Menambahkan semua perubahan dan file baru di direktori saat ini ke Staging Area. 
+    - contoh penggunaan : git add . : Menambahkan semua perubahan dan file baru di direktori saat ini ke Staging Area
 4. git commit
     - kegunaan : menyimpan perubahan secara permanen yang telah dipilih (dengan git add)
     - contoh penggunaan : git commit -m "Pesan penjelasan perubahan di sini" : melakukan commit dan memberikan pesan
@@ -113,7 +113,35 @@ instalasi ubuntu menggunakan wsl
         - Sistem lebih kompleks
         - Lebih berat karena memiliki dual system
 
-### b. Komponen-komponen dalam UAV
+### b. gerak roll, yaw, dan pitch; air speed dan ground speed
+1. Roll
+    - Gerakan rotasi UAV terhadap sumbu longitudinal
+    - Fungsi: belok kiri/kanan (banking)
+2. yaw
+    - Gerakan rotasi terhadap sumbu vertikal
+    -   Fungsi: mengubah arah heading
+3. pitch
+    - Gerakan rotasi terhadap sumbu lateral
+    - Fungsi: mengatur ketinggian dan sudut tanjak/turun
+4. Air speed
+    - Kecepatan UAV relatif terhadap udara di sekitarnya
+    - Menentukan gaya angkat (lift) dan stabilitas terbang
+5. Ground speed
+    - Kecepatan UAV relatif terhadap permukaan tanah
+    - Menentukan waktu tempuh dan jangkauan misi
+Hubungan keduanya
+-   Ground Speed = Airspeed ± Kecepatan Angin
+1. HDOP (Horizontal Dilution of Precision) – GPS
+    - Ukuran kualitas geometri satelit GPS terhadap akurasi posisi horizontal.
+    - Nilai kecil = posisi lebih akurat.
+    - HDOP besar -> satelit berkelompok → error posisi besar
+2. RSSI (Received Signal Strength Indicator) – Telekomunikasi UAV
+    - Ukuran kekuatan sinyal radio yang diterima UAV atau ground station.
+    - Biasanya dalam dBm.
+    - RSSI tinggi -> link komunikasi stabil
+    - RSSI rendah -> risiko kehilangan kendali/telemetri
+
+### c. Komponen-komponen dalam UAV
 1. Airframe (Struktur UAV)
     - Berfungsi seperti sekeleton yang menjadi kerangka fisik UAV. Airframe berfungsi sebagai tempat menopang semua komponen (motor, sensor, payload, dll). Selain itu, airframe juga menentukan karakteristik aerodinamika
     - Relevansi mapping :
@@ -169,6 +197,7 @@ instalasi ubuntu menggunakan wsl
 - Payload bekerja sama dengan sistem kontrol
 - Ground station berkomunikasi dengan flight controller
 
+```mermaid 
 graph TD
     GCS -->|Telemetry| FC
     Sensor --> FC
@@ -178,3 +207,67 @@ graph TD
     Power --> Sensor
     Power --> Motor
     Power --> Payload
+```
+
+### d. Review paper
+- [Klik untuk melihat review](../lampiran/a/Review%20paper%20UAV.pdf)
+
+## 6. Algoritma
+### a. A* (A-star) dan D* (D-star)
+- A* adalah algoritma pencarian jalur terpendek di graf dengan menyeimbangkan:
+        - biaya yang sudah ditempuh (g(n))
+        - perkiraan biaya ke tujuan (h(n))
+    $$
+    f(n) = g(n) + h(n)
+    $$
+    - Langkah ringkas:
+        - Mulai dari node awal
+        - Hitung f(n) untuk semua kandidat jalur
+        - Pilih node dengan f(n) paling kecil
+        - Ulangi sampai tujuan tercapai
+    Jika heuristik h(n) admissible, A* optimal
+
+- D* adalah versi adaptif A* untuk lingkungan berubah
+    - Tidak menghitung ulang dari nol
+    - Saat ada rintangan baru, D* memperbarui jalur secara lokal
+    - Digunakan kapan & di mana
+        - Lingkungan dinamis & tidak sepenuhnya diketahui
+        - UAV eksplorasi, rover Mars NASA, robot SAR (Search and Rescue)
+
+### b. PID Controller
+PID adalah algoritma kontrol feedback yang mengoreksi error antara: **Setpoint-Output**
+PID adalah singkatan dari:
+1. Proportional (P)
+    - Reaksi langsung terhadap error
+    - Error besar -> koreksi besar
+2. Integral (I)
+    - Mengakumulasi error masa lalu.
+    - Menghilangkan steady-state error
+3. Derivative (D)
+    - Melihat laju perubahan error
+    - Meredam overshoot dan osilasi
+output : 
+$$
+u(t) = K_p e(t) + K_i \int e(t)\,dt + K_d \frac{de(t)}{dt}
+$$
+
+- Digunakan untuk attitude control (roll, pitch, yaw)
+
+### c. Kalman Filter & Extended Kalman Filter (EKF)
+Kalman Filter (KF) digunakan untuk sistem linear, di mana hubungan antara keadaan dan pengukuran dapat ditulis sebagai persamaan linear
+
+Extended Kalman Filter (EKF) digunakan untuk sistem non-linear, seperti gerak dan rotasi UAV. EKF bekerja dengan melinierkan sistem non-linear secara lokal menggunakan Jacobian, lalu menerapkan prinsip Kalman Filter
+
+- Keduanya bekerja dengan dua langkah utama :
+    - Prediksi keadaan berdasarkan model sistem
+    - Koreksi menggunakan data sensor yang berisik
+
+Perbedaan utama:
+EKF mampu menangani non-linearitas, sedangkan KF tidak
+
+Penggunaan EKF:
+Navigasi dan sensor fusion pada UAV
+
+
+
+

@@ -32,3 +32,6 @@
 
 ## 19 Januari 2026 [23:00]
 - Menyelesaikan soal no 5 bagian b
+
+## 20 Januari 2026 [23:11]
+- Finalisasi seluruh soal A
