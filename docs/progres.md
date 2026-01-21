@@ -35,3 +35,8 @@
 
 ## 20 Januari 2026 [23:11]
 - Finalisasi seluruh soal A
+
+## 21 Januari 2026 [16:30]
+- Menyelesaikan bagian b nomor 1a, 2, 3 (bagian no 1b diskip dulu, karena keterbatasan waktu karena skill cpp udah rusty)
+- Mempelajari konsep dasar multithreading
+- Menyelesaikan program multithreading yang menggunakan python sebagai alternatif
