@@ -218,7 +218,7 @@ graph TD
         - biaya yang sudah ditempuh (g(n))
         - perkiraan biaya ke tujuan (h(n))
     $$
-    f(n) = g(n) + h(n)
+    \(f(n)=g(n)+h(n)\)
     $$
     - Langkah ringkas:
         - Mulai dari node awal
