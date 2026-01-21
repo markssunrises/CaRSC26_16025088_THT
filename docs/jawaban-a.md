@@ -248,7 +248,7 @@ PID adalah singkatan dari:
     - Meredam overshoot dan osilasi
 output : 
 $$
-u(t) = K_p e(t) + K_i \int e(t)\,dt + K_d \frac{de(t)}{dt}
+\(u(t)=K_{p}e(t)+K_{i}\int e(t)dt+K_{d}\frac{de(t)}{dt}\)
 $$
 
 - Digunakan untuk attitude control (roll, pitch, yaw)
