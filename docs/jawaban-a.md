@@ -218,7 +218,7 @@ graph TD
         - biaya yang sudah ditempuh (g(n))
         - perkiraan biaya ke tujuan (h(n))
     $$
-    f(n) = g(n) + h(n)
+    \(f(n)=g(n)+h(n)\)
     $$
     - Langkah ringkas:
         - Mulai dari node awal
@@ -251,7 +251,6 @@ output :
 $$
 \(u(t)=K_{p}e(t)+K_{i}\int e(t)dt+K_{d}\frac{de(t)}{dt}\)
 $$
-
 
 - Digunakan untuk attitude control (roll, pitch, yaw)
 
