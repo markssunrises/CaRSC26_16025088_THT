@@ -40,3 +40,8 @@
 - Menyelesaikan bagian b nomor 1a, 2, 3 (bagian no 1b diskip dulu, karena keterbatasan waktu karena skill cpp udah rusty)
 - Mempelajari konsep dasar multithreading
 - Menyelesaikan program multithreading yang menggunakan python sebagai alternatif
+
+## 21 Januari 2026 [20:42]
+- Skip no 4, mengerjakan no 5 dan concept 1
+- Break dulu karena demam
+
