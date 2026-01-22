@@ -286,3 +286,25 @@ $$x = f \frac{X}{Z}, \quad y = f \frac{Y}{Z}$$
         - Mengetahui mode UAV saat ini
         - Sinkronisasi awal saat GCS terhubung
 
+4. Jenis Pesan MAVLink yang Umum
+- Status & Monitoring
+    - HEARTBEAT
+    - SYS_STATUS
+    - BATTERY_STATUS\
+Untuk cek kondisi UAV
+
+- Position & Navigation
+    - GLOBAL_POSITION_INT
+    - LOCAL_POSITION_NED
+    - GPS_RAW_INT\
+Untuk navigasi dan pemetaan
+
+- Command & Control
+    - COMMAND_LONG
+    - COMMAND_INT\
+Mengirim perintah
+
+- Mission
+    - MISSION_ITEM
+    - MISSION_COUNT\
+Mengatur waypoint dan misi otomatis
