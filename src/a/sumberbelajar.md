@@ -12,3 +12,11 @@ Dasar-dasar penerbangan
 Dasar dan Komponen UAV
 - Austin, R. – Unmanned Aircraft Systems
 - ArduPilot Documentation – System Architecture
+
+## 20/01/26
+A* dan D*
+- LaValle, S. M. Planning Algorithms. Cambridge University Press. https://planning.cs.uiuc.edu/ 
+PID Controller
+- Ogata, K. Modern Control Engineering. Prentice Hall.
+Kalman Filter & EKF
+- Welch, G., & Bishop, G. (2006). An Introduction to the Kalman Filter. University of North Carolina. https://www.cs.unc.edu/~welch/media/pdf/kalman_intro.pdf

@@ -35,3 +35,35 @@
 
 ## 20 Januari 2026 [23:11]
 - Finalisasi seluruh soal A
+
+## 21 Januari 2026 [16:30]
+- Menyelesaikan bagian b nomor 1a, 2, 3 (bagian no 1b diskip dulu, karena keterbatasan waktu karena skill cpp udah rusty)
+- Mempelajari konsep dasar multithreading
+- Menyelesaikan program multithreading yang menggunakan python sebagai alternatif
+
+## 21 Januari 2026 [20:42]
+- Skip no 4, mengerjakan no 5 dan concept 1
+- Break dulu karena demam
+
+## 22 Januari 2026 [17:59]
+- Menyelesaikan no 4 concept 1
+- bagian programming cpp diskip lagi karena masih harus belajar ulang
+
+## 22 Januari 2026 [18:28]
+- Mempelajari opencv (hanya fokus ke bagian yang disuruh)
+- Menyelesaikan concept 5
+
+## 22 Januari 2026 [19:14]
+- Menyelesaikan GCS 1
+- concept 6 diskip karena terlalu rumit dan lama
+- Melakukan beberapa revisi pada rumus matematika yang mengalami error di githubnya
+
+## 22 Januari 2026 [19:42]
+- Membuat arsitektur web sederhana dengan mermaid
+
+## 22 Januari 2026 [21:36]
+- Selesai mempelajari bagian docker yang diperlukan 
+- Menyelesaikan soal GCS 3
+- No 4 dan 5 skip karena surrend 
+- ![surrend](../lampiran/Screenshot%202026-01-22%20214038.png)
+
