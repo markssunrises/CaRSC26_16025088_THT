@@ -60,3 +60,7 @@
 
 ## 22 Januari 2026 [19:42]
 - Membuat arsitektur web sederhana dengan mermaid
+
+## 22 Januari 2026 [21:36]
+- Selesai mempelajari bagian docker yang diperlukan 
+- Menyelesaikan soal GCS 3

@@ -324,3 +324,20 @@ flowchart LR
     B -->|MAVLink Commands| C
     C -->|Control Signals| U
 ```
+
+## 3. Docker
+1. Perbedaan Container dan Virtual Machine
+- Container Docker
+    - Container adalah versi lebih kecil dari virtual machine. Container adalah lingkungan yang hanya membawa aplikasi + dependensi yang dibutuhkan. Sementara itu, Virtual Machine adalah simulasi komputer lengkap yang menjalankan operating system sendiri, jadi ada OS nya
+
+2. Cara kerja Dockerfile
+- Dockerfile adalah resep untuk membuat image Docker
+- Cara kerjanya : 
+    - Docker membaca Dockerfile baris demi baris
+    - Setiap instruksi membentuk layer
+    - Semua layer digabung jadi Docker image
+    - Image dijalankan menjadi container
+
+3. Manfaat menggunakan Docker dalam pengembangan aplikasi web GCS
+- Tidak harus pindah-pindah lingkungan karena di server, cloud, maupun laptop sendiri, berjalannya sama
+- Deploymentnya mudah karena tanpa install manual library, compiler, atau dependency UAV
