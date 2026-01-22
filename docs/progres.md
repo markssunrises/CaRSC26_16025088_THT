@@ -45,3 +45,6 @@
 - Skip no 4, mengerjakan no 5 dan concept 1
 - Break dulu karena demam
 
+## 22 Januari 2026 [17:59]
+- Menyelesaikan no 4 concept 1
+- bagian programming cpp diskip lagi karena masih harus belajar ulang

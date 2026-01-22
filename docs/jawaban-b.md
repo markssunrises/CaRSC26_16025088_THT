@@ -177,3 +177,70 @@ class Quadrotor(UAV):
 5. Actions
 - Task berdurasi lama yang bisa dimonitor
 - Analoginya seperti menyuruh sebuah robot mengerjakan sesuatu, dan setiap dia sampai ke checkpoint, laporkan. Proses ini tidak berhenti sampai disuruh
+
+## 4. Pinhole Camera Model
+1. Penjelasan
+- Pinhole camera model adalah model yang menjelaskan bagaimana setiap titik yang ada dalam dunia 3D diproyeksikan ke dunia 2D image plane melalui satu titik kecil (pinhole) tanpa lensa. Dianggap sebagai aproksimasi yang ideal  untuk algoritma visi komputer termasuk kalibrasi dan rekonstruksi scene
+![Diagram pinhole](../lampiran/b/diagram%20pinhole.png)
+
+2. homogeneous coordinates dan rigid transformation
+- homogeneous coordinates
+    - representasi titik untuk mempermudah operasi proyeksi dan transformasi dalam projective geometry
+        - Titik 3D Euclidean (X,Y, Z) direpresentasikan sebagai (X,Y,Z,1)
+        - Titik 2D Euclidean (u, v) direpresentasikan sebagai (u, v, 1)
+        - Homogeneous mempermudah proyeksi menjadi perkalian matriks linier
+    - Persamaan umum
+    $$
+    \(y\sim K[R|t]x\)
+    $$
+    - $\(x=[X,Y,Z,1]^T)$ adalah titik dunia homogen
+    - $\(Y)$ adalah titik image homogen
+    - $\(K)$ adalah matriks parameter intrinsik
+    - $\([R|t])$ adalah rotasi dan translasi (ekstrinsik)
+- Rigid transformation
+    - perpindahan dan rotasi yang mempertahankan jarak antar titik
+    - Persamaan umum 
+    $$ \(X_{\text{cam}}=RX_{\text{world}}+t\) $$
+    - $\(R)$ adalah matriks rotasi $\((3x3))$
+    - $\(t)$ adalah vektor translasi $\((3x1))$
+
+3. parameter intrinsik dan parameter ekstrinsik kamera
+- Parameter Intrinsik
+    - Parameter yang menggambarkan geometri internal kamera
+        - Focal length $\((f_{x},f_{y})\)$
+        - Principal point $\((c_{x},c_{y})\)$
+        - Skew (biasanya 0)
+    - Disusun dalam matriks kalibrasi \(K\): 
+        $$
+        \(K=\left(\begin{matrix}f_{x}&0&c_{x}\\ 0&f_{y}&c_{y}\\ 0&0&1\end{matrix}\right)\)
+        $$
+- Parameter Ekstrinsik
+    - Parameter yang menggambarkan pose kamera di dunia
+        - posisi dan orientasi kamera (melalui R, t)
+- Perbedaannya, intrinsik lebih fokus ke pada lensa dan sensor, seperti tingkat zoom, titik tengah gambar, dll. Sementara ekstrinsik, lebih fokus ke di mana kamera berada dan bagaimana ia menghadap
+
+4. Perbedaan Perspective Projection vs Weak-Perspective Projection
+- Perspective Projection
+    - Proyeksi titik 3D ke 2D bergantung pada kedalaman Z. Objek yang lebih jauh tampak lebih kecil dan garis paralel bisa bertemu ke titik hilang
+    - $$
+    \(x=f\frac{X}{Z},\quad y=f\frac{Y}{Z}\)
+    $$
+- Weak-Perspective Projection
+    - aproksimasi linear dari perspective projection yang berlaku jika objek relatif kecil dalam kedalaman dan jaraknya jauh dari kamera
+    - Dasar idenya:
+        - Semua titik dianggap pada kedalaman rata-rata $\(\={Z}\)$
+        - Sehingga bisa disederhanakan menjadi: 
+        $$
+        \(x^{\prime }\approx sX,\quad y^{\prime }\approx sY\)$$
+        
+        - dengan skala $\(s=f/\={Z}\)$
+        - Bertujuan mengurangi kompleksitas dan sering dipakai ketika variasi kedalamannya kecil
+- perbedaan utama
+    - Perspective mempertimbangkan Z di setiap titik, sehingga menghasilkan efek perspektif yang nyata
+    - Weak-perspective menggunakan kedalaman rata-rata sehingga lebih linear dan cepat, namun kurang akurat jika depth bervariasi
+
+5. Perbedaan Kalibrasi Kamera Linear vs Nonlinear
+- Kalibrasi Kamera Linear
+    - Kalibrasi linear (seperti Direct Linear Transform) menyusun hubungan proyeksi kamera dari banyak pasangan titik 3D–2D menjadi sistem persamaan linier untuk mencari parameter. Kalibrasi linear cepat dan memberi perkiraan awal parameter
+- Kalibrasi Kamera Nonlinear
+    - Setelah parameter awal didapat, kalibrasi nonlinear meminimalkan error non-linier antara proyeksi yang diperkirakan dan titik aslinya (contohnya menggunakan Levenberg–Marquardt). Hal ini memberi akurasi yang lebih tinggi, tetapi harus iterasi dan lebih mahal secara komputasi
