@@ -215,11 +215,8 @@ graph TD
 ## 6. Algoritma
 ### a. A* (A-star) dan D* (D-star)
 - A* adalah algoritma pencarian jalur terpendek di graf dengan menyeimbangkan:
-        - biaya yang sudah ditempuh (g(n))
-        - perkiraan biaya ke tujuan (h(n))
-    $$
-    \(f(n)=g(n)+h(n)\)
-    $$
+    - biaya yang sudah ditempuh (g(n))
+    - perkiraan biaya ke tujuan (h(n)) $$f(n) = g(n) + h(n)$$
     - Langkah ringkas:
         - Mulai dari node awal
         - Hitung f(n) untuk semua kandidat jalur
@@ -247,9 +244,7 @@ PID adalah singkatan dari:
     - Melihat laju perubahan error
     - Meredam overshoot dan osilasi
 output : 
-$$
-\(u(t)=K_{p}e(t)+K_{i}\int e(t)dt+K_{d}\frac{de(t)}{dt}\)
-$$
+$$u(t) = K_{p}e(t) + K_{i}\int e(t)dt + K_{d}\frac{de(t)}{dt}$$
 
 - Digunakan untuk attitude control (roll, pitch, yaw)
 

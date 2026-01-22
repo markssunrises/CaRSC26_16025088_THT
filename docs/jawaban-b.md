@@ -178,6 +178,10 @@ class Quadrotor(UAV):
 - Task berdurasi lama yang bisa dimonitor
 - Analoginya seperti menyuruh sebuah robot mengerjakan sesuatu, dan setiap dia sampai ke checkpoint, laporkan. Proses ini tidak berhenti sampai disuruh
 
+## 2. sistem publisher dan subscriber dalam C++
+
+## 3. sistem service dan client dalam C++
+
 ## 4. Pinhole Camera Model
 1. Penjelasan
 - Pinhole camera model adalah model yang menjelaskan bagaimana setiap titik yang ada dalam dunia 3D diproyeksikan ke dunia 2D image plane melalui satu titik kecil (pinhole) tanpa lensa. Dianggap sebagai aproksimasi yang ideal  untuk algoritma visi komputer termasuk kalibrasi dan rekonstruksi scene
@@ -189,31 +193,32 @@ class Quadrotor(UAV):
         - Titik 3D Euclidean (X,Y, Z) direpresentasikan sebagai (X,Y,Z,1)
         - Titik 2D Euclidean (u, v) direpresentasikan sebagai (u, v, 1)
         - Homogeneous mempermudah proyeksi menjadi perkalian matriks linier
-    - Persamaan umum
-    $$
-    \(y\sim K[R|t]x\)
-    $$
-    - $\(x=[X,Y,Z,1]^T)$ adalah titik dunia homogen
-    - $\(Y)$ adalah titik image homogen
-    - $\(K)$ adalah matriks parameter intrinsik
-    - $\([R|t])$ adalah rotasi dan translasi (ekstrinsik)
+    - Persamaan umum $$y \sim K[R|t]x$$
+    - $x = [X, Y, Z, 1]^T$ adalah titik dunia homogen
+    - $y$ adalah titik image homogen
+    - $K$ adalah matriks parameter intrinsik
+    - $[R|t]$ adalah rotasi dan translasi (ekstrinsik)
 - Rigid transformation
     - perpindahan dan rotasi yang mempertahankan jarak antar titik
     - Persamaan umum 
-    $$ \(X_{\text{cam}}=RX_{\text{world}}+t\) $$
-    - $\(R)$ adalah matriks rotasi $\((3x3))$
-    - $\(t)$ adalah vektor translasi $\((3x1))$
+    $$X_{\text{cam}} = R X_{\text{world}} + t$$
+    - $R$: Matriks rotasi berukuran $3 \times 3$
+    - $t$: Vektor translasi berukuran $3 \times 1$
 
 3. parameter intrinsik dan parameter ekstrinsik kamera
 - Parameter Intrinsik
     - Parameter yang menggambarkan geometri internal kamera
-        - Focal length $\((f_{x},f_{y})\)$
-        - Principal point $\((c_{x},c_{y})\)$
+        - Focal length ($f_x, f_y$)
+        - Principal point ($c_x, c_y$)
         - Skew (biasanya 0)
     - Disusun dalam matriks kalibrasi \(K\): 
-        $$
-        \(K=\left(\begin{matrix}f_{x}&0&c_{x}\\ 0&f_{y}&c_{y}\\ 0&0&1\end{matrix}\right)\)
-        $$
+$$
+K = \begin{bmatrix}
+f_x & 0 & c_x \\
+0 & f_y & c_y \\
+0 & 0 & 1
+\end{bmatrix}
+$$
 - Parameter Ekstrinsik
     - Parameter yang menggambarkan pose kamera di dunia
         - posisi dan orientasi kamera (melalui R, t)
@@ -222,18 +227,15 @@ class Quadrotor(UAV):
 4. Perbedaan Perspective Projection vs Weak-Perspective Projection
 - Perspective Projection
     - Proyeksi titik 3D ke 2D bergantung pada kedalaman Z. Objek yang lebih jauh tampak lebih kecil dan garis paralel bisa bertemu ke titik hilang
-    - $$
-    \(x=f\frac{X}{Z},\quad y=f\frac{Y}{Z}\)
-    $$
+
+$$x = f \frac{X}{Z}, \quad y = f \frac{Y}{Z}$$
+
 - Weak-Perspective Projection
     - aproksimasi linear dari perspective projection yang berlaku jika objek relatif kecil dalam kedalaman dan jaraknya jauh dari kamera
     - Dasar idenya:
-        - Semua titik dianggap pada kedalaman rata-rata $\(\={Z}\)$
-        - Sehingga bisa disederhanakan menjadi: 
-        $$
-        \(x^{\prime }\approx sX,\quad y^{\prime }\approx sY\)$$
-        
-        - dengan skala $\(s=f/\={Z}\)$
+        - Semua titik dianggap pada kedalaman rata-rata ($\bar{Z}$)
+        - Sehingga bisa disederhanakan menjadi: $$x' \approx sX, \quad y' \approx sY$$
+        - dengan skala $$s = \frac{f}{\bar{Z}}$$
         - Bertujuan mengurangi kompleksitas dan sering dipakai ketika variasi kedalamannya kecil
 - perbedaan utama
     - Perspective mempertimbangkan Z di setiap titik, sehingga menghasilkan efek perspektif yang nyata
@@ -247,7 +249,40 @@ class Quadrotor(UAV):
 
 ## 5. OpenCV
 - [Source code](../src/b/concept/opencv/main.cpp)
-- [Gambar sebelum](../src/b/concept/opencv/input.jpg)
-- [Gambar sesudah](../src/b/concept/opencv/output_sketsa.jpg)
+- Gambar sebelum ![Gambar sebelum](../src/b/concept/opencv/input.jpg)
+- Gambar sesudah ![Gambar sesudah](../src/b/concept/opencv/output_sketsa.jpg)
 
+## 6. tracking lingkaran
+
+# Jurusan GCS
+## 1. MAVLink
+1. Struktur Pesan MAVLink
+- MAVLink mengirim data dalam bentuk packet biner kecil dengan keunggulan efisien dan tahan error
+- Dalam pesan, biasanya berisi :
+    - Header - informasi dasar (versi, panjang payload)
+    - Payload - data utama (misalnya posisi, kecepatan, status)
+    - Checksum (CRC) - deteksi error
+
+2. System ID dan Component ID
+- Digunakan agar banyak perangkat bisa menggunakan satu jalur komunikasi tanpa tabrakan
+- System ID (sysid) - Mengidentifikasi kendaraan atau sistem utama
+    - Contoh:
+        - UAV = sysid 1
+        - GCS = sysid 255
+- Component ID (compid) - Mengidentifikasi bagian di dalam sistem
+    - Contoh:
+        - Autopilot
+        - Kamera
+        - Gimbal
+
+3. Cara Kerja Heartbeat dalam MAVLink
+- Heartbeat adalah pesan periodik (biasanya 1 Hz) untuk memberi tahu bahwa sistem masih hidup
+    - Isi heartbeat antara lain:
+        - jenis sistem (UAV, GCS, dll)
+        - mode (manual, auto, guided)
+        - status (armed / disarmed)
+    - Fungsinya:
+        - Deteksi connection lost
+        - Mengetahui mode UAV saat ini
+        - Sinkronisasi awal saat GCS terhubung
 
