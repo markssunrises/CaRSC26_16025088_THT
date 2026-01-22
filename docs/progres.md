@@ -64,6 +64,6 @@
 ## 22 Januari 2026 [21:36]
 - Selesai mempelajari bagian docker yang diperlukan 
 - Menyelesaikan soal GCS 3
-- No 4 dan 5 skip karena surrend 
+- No 4 dan 5 skip karena surrend waktu
 - ![surrend](../lampiran/Screenshot%202026-01-22%20214038.png)
 
