@@ -64,3 +64,5 @@
 ## 22 Januari 2026 [21:36]
 - Selesai mempelajari bagian docker yang diperlukan 
 - Menyelesaikan soal GCS 3
+- No 4 dan 5 skip karena keterbatasan waktu
+
