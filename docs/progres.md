@@ -48,3 +48,7 @@
 ## 22 Januari 2026 [17:59]
 - Menyelesaikan no 4 concept 1
 - bagian programming cpp diskip lagi karena masih harus belajar ulang
+
+## 22 Januari 2026 [18:28]
+- Mempelajari opencv (hanya fokus ke bagian yang disuruh)
+- Menyelesaikan concept 5

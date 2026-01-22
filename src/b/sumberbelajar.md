@@ -9,3 +9,5 @@ firmware dan sistem benam
 Pinhole camera model
 - https://www.scratchapixel.com/lessons/3d-basic-rendering/3d-viewing-pinhole-camera/how-pinhole-camera-works-part-1.html
 - NumberAnalytics: Pinhole, intrinsic & extrinsic.
+openCV
+- Dokumentasi OpenCV (https://opencv.org/)

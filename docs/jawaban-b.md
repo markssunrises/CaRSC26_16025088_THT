@@ -244,3 +244,10 @@ class Quadrotor(UAV):
     - Kalibrasi linear (seperti Direct Linear Transform) menyusun hubungan proyeksi kamera dari banyak pasangan titik 3D–2D menjadi sistem persamaan linier untuk mencari parameter. Kalibrasi linear cepat dan memberi perkiraan awal parameter
 - Kalibrasi Kamera Nonlinear
     - Setelah parameter awal didapat, kalibrasi nonlinear meminimalkan error non-linier antara proyeksi yang diperkirakan dan titik aslinya (contohnya menggunakan Levenberg–Marquardt). Hal ini memberi akurasi yang lebih tinggi, tetapi harus iterasi dan lebih mahal secara komputasi
+
+## 5. OpenCV
+- [Source code](../src/b/concept/opencv/main.cpp)
+- [Gambar sebelum](../src/b/concept/opencv/input.jpg)
+- [Gambar sesudah](../src/b/concept/opencv/output_sketsa.jpg)
+
+
