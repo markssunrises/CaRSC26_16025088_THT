@@ -19,3 +19,8 @@ openCV
 
 Mavlink
 - https://mavlink.io/en/
+
+
+Web dev for UAV
+- Web Application Architecture - MDN Web Docs – Web Architecture
+- UAV & Ground Control Station - PX4 Documentation – Ground Control Stations

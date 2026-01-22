@@ -308,3 +308,19 @@ Mengirim perintah
     - MISSION_ITEM
     - MISSION_COUNT\
 Mengatur waypoint dan misi otomatis
+
+## 2. Arsitektur web 
+```mermaid
+flowchart LR
+    U[UAV] -->|Telemetry & Video<br/>MAVLink, RTP| C[Communication Server]
+
+    C -->|Parsed Telemetry| B[Backend Server]
+    C -->|Video Stream| V[Video Streaming Server]
+
+    B -->|REST API / WebSocket| W[Web Application GCS]
+    V -->|Video Stream WebRTC/RTSP| W
+
+    W -->|User Commands| B
+    B -->|MAVLink Commands| C
+    C -->|Control Signals| U
+```

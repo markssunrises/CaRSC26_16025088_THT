@@ -52,3 +52,11 @@
 ## 22 Januari 2026 [18:28]
 - Mempelajari opencv (hanya fokus ke bagian yang disuruh)
 - Menyelesaikan concept 5
+
+## 22 Januari 2026 [19:14]
+- Menyelesaikan GCS 1
+- concept 6 diskip karena terlalu rumit dan lama
+- Melakukan beberapa revisi pada rumus matematika yang mengalami error di githubnya
+
+## 22 Januari 2026 [19:42]
+- Membuat arsitektur web sederhana dengan mermaid
