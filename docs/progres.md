@@ -65,5 +65,5 @@
 - Selesai mempelajari bagian docker yang diperlukan 
 - Menyelesaikan soal GCS 3
 - No 4 dan 5 skip karena surrend 
-![surrend](../lampiran/Screenshot%202026-01-22%20214038.png)
+- ![surrend](../lampiran/Screenshot%202026-01-22%20214038.png)
 
